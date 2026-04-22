@@ -17,6 +17,7 @@ class Settings:
     request_timeout_pool: float
     max_retries: int
     retry_backoff_base: float
+    retry_idempotent_only: bool
     log_level: str
     log_file: str
     log_max_bytes: int
@@ -42,8 +43,9 @@ def get_settings() -> Settings:
         request_timeout_read=float(os.getenv("REQUEST_TIMEOUT_READ", "300")),
         request_timeout_write=float(os.getenv("REQUEST_TIMEOUT_WRITE", "30")),
         request_timeout_pool=float(os.getenv("REQUEST_TIMEOUT_POOL", "10")),
-        max_retries=int(os.getenv("MAX_RETRIES", "2")),
+        max_retries=int(os.getenv("MAX_RETRIES", "1")),
         retry_backoff_base=float(os.getenv("RETRY_BACKOFF_BASE", "0.4")),
+        retry_idempotent_only=_get_bool("RETRY_IDEMPOTENT_ONLY", True),
         log_level=os.getenv("LOG_LEVEL", "INFO"),
         log_file=os.getenv("LOG_FILE", "logs/app.log"),
         log_max_bytes=int(os.getenv("LOG_MAX_BYTES", str(10 * 1024 * 1024))),
