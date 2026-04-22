@@ -43,7 +43,7 @@ def get_settings() -> Settings:
         request_timeout_read=float(os.getenv("REQUEST_TIMEOUT_READ", "300")),
         request_timeout_write=float(os.getenv("REQUEST_TIMEOUT_WRITE", "30")),
         request_timeout_pool=float(os.getenv("REQUEST_TIMEOUT_POOL", "10")),
-        max_retries=int(os.getenv("MAX_RETRIES", "1")),
+        max_retries=int(os.getenv("MAX_RETRIES", "0")),
         retry_backoff_base=float(os.getenv("RETRY_BACKOFF_BASE", "0.4")),
         retry_idempotent_only=_get_bool("RETRY_IDEMPOTENT_ONLY", True),
         log_level=os.getenv("LOG_LEVEL", "INFO"),
